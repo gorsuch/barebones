@@ -1,11 +1,9 @@
 require 'rake'
-require 'rake/testtask'
+require 'rspec/core/rake_task'
 
-task :default => [:test_units]
+task :default => :spec
 
-desc "Run basic tests"
-Rake::TestTask.new(:test_units) do |t|
-  t.pattern = 'test/test_*.rb'
-  t.verbose = true
-  t.warning = true 
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = %w[--color]
+  t.pattern = 'spec/*_spec.rb'
 end
